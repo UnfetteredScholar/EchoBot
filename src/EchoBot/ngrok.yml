@@ -1,0 +1,15 @@
+authtoken: 2yliRIBInUtVxRBkaBZEiEwqFuM_4zdi4VhEuYRqx45Lgvu1L
+
+tunnels:
+  bot-signaling:
+    proto: http
+    addr: "9442"
+    hostname: clear-mutual-sailfish.ngrok-free.app
+  bot-media:
+    proto: tcp
+    addr: 8445
+#     remote_addr: 1.tcp.ngrok.io:12332
+
+
+# Domain: clear-mutual-sailfish.ngrok-free.app
+# ID: rd_2zeG62BB2w1cafU7pnWFd4zqCmR
