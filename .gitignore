@@ -351,3 +351,4 @@ MigrationBackup/
 .env
 
 .DS_Store
+/src/EchoBot/ngrok.yml
