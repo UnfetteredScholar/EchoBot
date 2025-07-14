@@ -12,7 +12,7 @@
 // <summary></summary>
 // ***********************************************************************>
 using Microsoft.AspNetCore.Http;
-
+using System;
 namespace EchoBot.Util
 {
     public static class HttpHelpers
@@ -25,15 +25,40 @@ namespace EchoBot.Util
                 .SetContent(req)
                 .SetContentType(req);
 
+
         private static HttpRequestMessage SetAbsoluteUri(this HttpRequestMessage msg, HttpRequest req)
             => msg.Set(m => m.RequestUri = new UriBuilder
             {
                 Scheme = req.Scheme,
                 Host = req.Host.Host,
-                Port = req.Host.Port.Value,
+                Port = req.Host.Port ?? (req.Scheme == "https" ? 443 : 80),
                 Path = req.PathBase.Add(req.Path),
                 Query = req.QueryString.ToString()
             }.Uri);
+
+        //private static HttpRequestMessage SetAbsoluteUri(this HttpRequestMessage msg, HttpRequest req)
+        //{
+        //    Console.WriteLine("REQUEST: " + req.ToString());
+
+        //    msg.Set(m => m.RequestUri = new UriBuilder
+        //       {
+        //           Scheme = req.Scheme,
+        //           Host = req.Host.Host,
+        //           Port = req.Host.Port.Value,
+        //           Path = req.PathBase.Add(req.Path),
+        //           Query = req.QueryString.ToString()
+        //       }.Uri);
+
+        //}
+        //private static HttpRequestMessage SetAbsoluteUri(this HttpRequestMessage msg, HttpRequest req)
+        //    => msg.Set(m => m.RequestUri = new UriBuilder
+        //    {
+        //        Scheme = req.Scheme,
+        //        Host = req.Host.Host,
+        //        Port = req.Host.Port.Value,
+        //        Path = req.PathBase.Add(req.Path),
+        //        Query = req.QueryString.ToString()
+        //    }.Uri);
 
         private static HttpRequestMessage SetMethod(this HttpRequestMessage msg, HttpRequest req)
             => msg.Set(m => m.Method = new HttpMethod(req.Method));

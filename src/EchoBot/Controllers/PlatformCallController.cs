@@ -48,6 +48,7 @@ namespace EchoBot.Controllers
         [Route(HttpRouteConstants.OnIncomingRequestRoute)]
         public async Task<HttpResponseMessage> OnIncomingRequestAsync()
         {
+            _logger?.LogInformation("REQUEST: " + this.Request.ToString());
             var httpRequestMessage = HttpHelpers.ToHttpRequestMessage(this.Request);
             return await _botService.Client.ProcessNotificationAsync(httpRequestMessage).ConfigureAwait(false);
         }
@@ -60,6 +61,7 @@ namespace EchoBot.Controllers
         [Route(HttpRouteConstants.OnNotificationRequestRoute)]
         public async Task<HttpResponseMessage> OnNotificationRequestAsync()
         {
+            _logger.LogInformation("Received notification at /api/calling/notification");
             var httpRequestMessage = HttpHelpers.ToHttpRequestMessage(this.Request);
 
             // Pass the incoming notification to the sdk. The sdk takes care of what to do with it.
