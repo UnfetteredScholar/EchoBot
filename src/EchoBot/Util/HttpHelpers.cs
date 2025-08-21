@@ -41,17 +41,6 @@ namespace EchoBot.Util
         //    Console.WriteLine("REQUEST: " + req.ToString());
 
         //    msg.Set(m => m.RequestUri = new UriBuilder
-        //       {
-        //           Scheme = req.Scheme,
-        //           Host = req.Host.Host,
-        //           Port = req.Host.Port.Value,
-        //           Path = req.PathBase.Add(req.Path),
-        //           Query = req.QueryString.ToString()
-        //       }.Uri);
-
-        //}
-        //private static HttpRequestMessage SetAbsoluteUri(this HttpRequestMessage msg, HttpRequest req)
-        //    => msg.Set(m => m.RequestUri = new UriBuilder
         //    {
         //        Scheme = req.Scheme,
         //        Host = req.Host.Host,
@@ -60,7 +49,18 @@ namespace EchoBot.Util
         //        Query = req.QueryString.ToString()
         //    }.Uri);
 
-        private static HttpRequestMessage SetMethod(this HttpRequestMessage msg, HttpRequest req)
+            //}
+            //private static HttpRequestMessage SetAbsoluteUri(this HttpRequestMessage msg, HttpRequest req)
+            //    => msg.Set(m => m.RequestUri = new UriBuilder
+            //    {
+            //        Scheme = req.Scheme,
+            //        Host = req.Host.Host,
+            //        Port = req.Host.Port.Value,
+            //        Path = req.PathBase.Add(req.Path),
+            //        Query = req.QueryString.ToString()
+            //    }.Uri);
+
+            private static HttpRequestMessage SetMethod(this HttpRequestMessage msg, HttpRequest req)
             => msg.Set(m => m.Method = new HttpMethod(req.Method));
 
         private static HttpRequestMessage SetHeaders(this HttpRequestMessage msg, HttpRequest req)
